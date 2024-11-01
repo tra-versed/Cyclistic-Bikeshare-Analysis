@@ -132,8 +132,41 @@ FROM `bikes_2023.dec`
    GROUP BY hour_started, member_casual
    ORDER BY hour_started, member_casual
    ```
-Combining `TIMESTAMP_TRUNC` and `TIMESTAMP_ADD` in this manner effectively rounded each starting timestamp to the nearest hour. Any time at or beyond the thirty minute mark would be 'pushed' into the next hour value.
+The queried data was then transferred to Tableau for visualization.
 
-The decision to use `TIME()` instead of `EXTRACT(hour FROM ...)` was determined by requiring the starting hour to be formatted as a time (rather than an integer) when transferring the data to Tableau for visualization.
-   
+## Conclusions
+1. As seen below, the majority of Cyclistic bike trips in 2023 were done by members, with casual riders represented in 35% of the trips. 
+
+<kbd>![Rider Type Distribution](https://github.com/user-attachments/assets/fe390d23-658e-425f-979c-b493444c1a09)</kbd>
+
+---
+
+2. This relationship can be further explored by observing member and casual trips across each month. There was an overall increase in trips during the warmer months, but with some variation between rider types. Member trips began increasing in March, peaked in August, and decreased by December. Casual trip activity was slightly more confined: increasing in April, peaked in July - one month before peak member trips - and subsided after October. 
+
+<kbd>![Monthly Trip Totals](https://github.com/user-attachments/assets/54218976-6c5c-4244-9a62-23117aa1e326)</kbd>
+
+---
+
+3. Examining average monthly ride lengths for each rider type offers an additional perspective. The surge in casual rider trips around July was reflected in the surge of average ride lengths among casual riders. While member rider lengths had a slight surge, the averages were significantly more consistent throughout the year.
+
+<kbd>![Average Monthly Ride Length](https://github.com/user-attachments/assets/762d91b8-976a-4217-9bfe-e4c87245a76c)</kbd>
+
+---
+
+4. Comparing rider activity between each day of the week suggests differing priorities among the riders. Member riders were more active during weekdays - suggesting trip use for commuting - while casual riders were concentrated during the weekend - suggesting trip use during leisure time.
+
+<kbd>![Trips by Day of Week](https://github.com/user-attachments/assets/00a7fc3d-d193-4acb-aa82-2f775d99c936)</kbd>
+
+---
+
+5. This ridership dynamic is further supported by examining the starting hour of each trip. Member riders were most active during morning and late afternoon rush hour periods, while casual riders displayed a broader surge of activity over the course of the day.
+
+<kbd>![Trips by Time of Day(1)](https://github.com/user-attachments/assets/fb2152f4-fe52-4e11-98ef-b1a655cc4353)</kbd>
+
+---
+
+## Recommendations
+
+## Further Considerations
+
 
