@@ -9,7 +9,7 @@ This analysis will examine a scenario posed by a fictional bikeshare company ope
   * What actions can be taken to encourage casual riders to subscribe to an annual membership?
 
 ### Data Source
-Although the outlined scenario is fictional, this analysis uses 2023 trip data from Divvy: (https://divvybikes.com/system-data).
+Although the outlined scenario is fictional, this analysis uses 2023 trip data from [Divvy](https://divvybikes.com/system-data).
 
 ### Tools Used
   * Excel - data cleaning and organization
@@ -135,7 +135,7 @@ FROM `bikes_2023.dec`
 The queried data was then transferred to Tableau for visualization.
 
 ## Conclusions
-1. As seen below, the majority of Cyclistic bike trips in 2023 were done by members, with casual riders represented in 35% of the trips. 
+1. As seen below, the majority of Cyclistic bike trips in 2023 were done by members, with casual riders represented in 35% of the trips. This is important to consider for each of the following visualizations, as the quantity of member trips significantly outnumbered that of casual trips. 
 
 <kbd>![Rider Type Distribution](https://github.com/user-attachments/assets/fe390d23-658e-425f-979c-b493444c1a09)</kbd>
 
@@ -147,7 +147,7 @@ The queried data was then transferred to Tableau for visualization.
 
 ---
 
-3. Examining average monthly ride lengths for each rider type offers an additional perspective. The surge in casual rider trips around July was reflected in the surge of average ride lengths among casual riders. While member rider lengths had a slight surge, the averages were significantly more consistent throughout the year.
+3. Examining average monthly ride lengths for each rider type offers an additional perspective. The surge in casual rider trips around July was reflected in the surge of average ride lengths among casual riders. While member rider lengths had a slight surge, the averages were significantly more consistent throughout the year. Additionally, casual riders averaged longer trip times than members across 2023, although the sample size of casual trips used to calculate these averages was significantly smaller than member trips. 
 
 <kbd>![Average Monthly Ride Length](https://github.com/user-attachments/assets/762d91b8-976a-4217-9bfe-e4c87245a76c)</kbd>
 
@@ -166,7 +166,22 @@ The queried data was then transferred to Tableau for visualization.
 ---
 
 ## Recommendations
+**Our goal for this project is to convert casual riders into Cyclistic members**. Having looked at the Cyclistic (well, technically [Divvy](https://divvybikes.com/system-data) trip data from 2023, we now know:
+ * Casual riders only represented 35% of all bike trips.
+ * Casual ridership drastically increased in the warmer months of the year: roughly April through October, peaking in July. This timeframe is slightly narrower than member trip activity.
+ * On average, casual riders used the bikes for longer durations than members.
+ * Casual riders predominantly used the bikes for leisure purposes (trips concentrated in weekends and late afternoon/evening times), a completely different priority from members using the bikes for commuting.
 
-## Further Considerations
+Rephrasing that last statement, the Cyclistic membership program appears to be most popular among commuters. Purchasing an annual pass for repeat commutes resonates with the demands of commuters, while people using the bikes in their free time would only need to purchase the one-time (or day-use) pass. 
+
+**Here are some suggested actions for reaching out to non-member riders:**
+ * Advertising campaign for annual passes targetting casual riders starting in April or May, anticipating the summer surge in casual rider trips.
+ * Offer two-day weekend passes, and/or offer a month-use passes - once again anticipating the casual rider summer surge. *However, since this option does not address converting annual subscribers...*
+ * Annual passes have reduced fare rates on weekends (or more free ride time before the fare starts), addressing an alternative purpose for subscribing. This could be a modification to the current annual pass, or be added as a seperate option for annual subscription.
+
+**Additionally, paths for further analysis could include:**
+ * Research the conversion rate of casual riders to members. Is there a specific time of year that sees increased subscriptions? 
+ * Examine any differences in membership activity, accounting for repeat trips by the same individuals. Do all members use Cyclistic for commuting, or are there repeat users weighing the data? 
+   
 
 
