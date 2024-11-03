@@ -4,12 +4,12 @@ Increasing membership subscriptions using trip data from 2023
 ## Introduction
 This analysis will examine a scenario posed by a fictional bikeshare company operating out of Chicago. The company, Cyclistic, allows customers to use one of 5,824 bicycles to travel between one of 692 stations scattered around Chicago. There are three pricing options: single-use passes, daily-use passes, and annual memberships. Given that annual memberships comprise the majority of Cyclistic's profits, this analysis will explore the differences between single-use and daily-use riders (refered to as casual riders) versus riders with annual memberships (referred to as members) - and determine how to convert casual riders to members. 
 
+### Data Source
+Although the outlined scenario is fictional, this analysis uses 2023 trip data from [Divvy](https://divvybikes.com/system-data).
+
 ### The Business Task
   * How do casual riders use Cyclistic bikes differently from members? 
   * What actions can be taken to encourage casual riders to subscribe to an annual membership?
-
-### Data Source
-Although the outlined scenario is fictional, this analysis uses 2023 trip data from [Divvy](https://divvybikes.com/system-data).
 
 ### Tools Used
   * Excel - data cleaning and organization
@@ -166,7 +166,7 @@ The queried data was then transferred to Tableau for visualization.
 ---
 
 ## Recommendations
-**Our goal for this project is to convert casual riders into Cyclistic members**. Having looked at the Cyclistic (well, technically [Divvy](https://divvybikes.com/system-data) trip data from 2023, we now know:
+**Our goal for this project is to convert casual riders into Cyclistic members**. Having looked at the Cyclistic trip data from 2023 (read: [Divvy](https://divvybikes.com/system-data) trip data from 2023), we now know:
  * Casual riders only represented 35% of all bike trips.
  * Casual ridership drastically increased in the warmer months of the year: roughly April through October, peaking in July. This timeframe is slightly narrower than member trip activity.
  * On average, casual riders used the bikes for longer durations than members.
