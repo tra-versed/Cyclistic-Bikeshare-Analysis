@@ -34,24 +34,24 @@ The raw data for 2023 trips were divided into twelve tables, one for each month 
   * **end_lng** - coordinates of end station longitude
   * **member_casual** - indicates rider's membership status: "member" (annual subscription) or "casual" (single-ride pass/ day-use pass)
 
-In order to return the time elapsed and day of week for each trip for further analysis, two columns were added:
+In order to return the time elapsed and day of week for each trip, two columns were added:
   * **ride_length** - ride length in minutes; used formula `=ROUND((D2-C2) * 1440, 2)` where D2 = **ended_at** and C2 = **started_at**, formatted as general number
   * **day_of_week** - day of week for trip; used formula `=WEEKDAY(C2)` where C2 = **started_at**, default return type
 
 ### Data Cleaning
-1. First, each column in each of the twelve tables were filtered for blanks. The majority of deleted rows across all months (22-26% deleted rows for each month) were due to missing values in at least one of four columns: start_station_name, start_station_id, end_station_name, and end_station_id. Some trips were only missing one of these four columns, while others were missing all four. There were noticeably extreme ride_length values in these rows (often more than one day), prompting their deletion. 
+1. First, each column in each table was filtered for blanks. The majority of deleted rows across all months (22-26% deleted rows for each month) were due to missing values in one of four columns: start_station_name, start_station_id, end_station_name, and end_station_id. Some trips were only missing one of these four columns, while others were missing all four. There were noticeably extreme ride_length values in these rows (often more than one day), prompting their deletion. 
 
-*There was one exception to these deletions: the Feburary table contained two stations names with missing station ID's for *all* accompanying rows - these stations were presumed to be new additions (not present in January) and were not deleted. 
+*There was one exception to these deletions: the Feburary table contained two station names with missing station ID's for *all* accompanying rows - these stations were presumed new additions to the dataset (not present in January) and were not deleted. 
 
-2. January contained several idiosyncracies not present in the other tables:
+2. January contained several idiosyncracies not present in other tables:
    * Deleted 127 rows missing end station latitude or longitude data
    * Deleted 5 duplicate trip_id values
      
-These rows were discovered before the rows with missing station info were deleted (22% of the table), unlike the other months where the missing station info was deleted first.
+These rows were discovered before the rows with missing station info were deleted (22% of the table), unlike other months where the missing station info was deleted first.
 
-3. Starting in April, every table had several rows with negative ride_length values, in which the ended_at datetime occured *before* the started_at datetime - usually less than a minute before. However, the November table contained 31 values (of the same date) in which trip times were approximately negative 50 minutes. All rows with negative ride_length values were deleted.
+3. Starting in April, every table had several rows with negative ride_length values, in which the ended_at datetime occured *before* the started_at datetime - usually less than a minute before. However, the November table contained 31 values in which trip times were approximately negative 50 minutes. All rows with negative ride_length values were deleted.
 
-With every table cleaned, the monthly dated was uploaded to BigQuery to be combined and queried for analysis. There were 3,509,156 total remaining trips.
+With all twelve tables cleaned, the monthly data was uploaded to BigQuery to be combined and queried for analysis. There were 3,509,156 total remaining trips.
 
 ## Data Analysis (BigQuery)
 ### Combining the Data
@@ -86,7 +86,7 @@ SELECT
   day_of_week
 FROM `bikes_2023.dec`
 ```
-*As seen above, an additional sixth column was added to further distinguish the **month** for each row. However, extracting the month from the 'started_at' timestamps proved to be more effective for sorting the analysis results than using a three-character string. In the future, this month ID column could instead be formatted as a two-digit number (eg '01' for January), in lieu of extracting the value from timestamps.
+*As seen above, an additional sixth column was added to further distinguish the **month** for each row. However, extracting the month from the 'started_at' timestamps proved to be more effective for sorting the analysis results than using a three-character string. In the future, this month ID column could be formatted as a two-digit number (eg '01' for January), in lieu of extracting the value from timestamps.
 
 ### Querying the Data
 1. First, to examine trips per month, the following query counted all trips and grouped by rider type and month:
@@ -110,7 +110,7 @@ FROM `bikes_2023.dec`
    FROM `bikes_2023.year`
    GROUP BY month, member_casual
    ```
-3. To examine trips by day of week, this query counted every occurence of each day, grouped by day of week and rider type:
+3. To examine trips by day of week, this query counted every trip occurence in each day, grouped by day of week and rider type:
 
    ```sql
    SELECT
@@ -121,7 +121,7 @@ FROM `bikes_2023.dec`
    GROUP BY day_of_week, member_casual
    ORDER BY day_of_week, member_casual
    ```
-4. Finally, to examine trips by start time, this query rounded all start times to the nearest hour and then counted each trip, grouped by the rounded start time and rider type:
+4. Finally, to examine trips by start time, this query rounded all start times to the nearest hour while counting each trip, grouped by the rounded start time and rider type:
 
    ```sql
    SELECT
@@ -132,7 +132,9 @@ FROM `bikes_2023.dec`
    GROUP BY hour_started, member_casual
    ORDER BY hour_started, member_casual
    ```
-The queried data was then transferred to Tableau for visualization.
+   Since the `EXTRACT()` function returned hourly values as integers, `TIME()` was used as the outer function to return the hours as times, as this format worked best for inputtnig the data into Tableau
+   
+With all metrics queried, the resulting tables were saved and transferred to Tableau for visualization.
 
 ## Conclusions
 1. As seen below, the majority of Cyclistic bike trips in 2023 were done by members, with casual riders represented in 35% of the trips. This is important to consider for each of the following visualizations, as the quantity of member trips significantly outnumbered that of casual trips. 
@@ -141,13 +143,13 @@ The queried data was then transferred to Tableau for visualization.
 
 ---
 
-2. This relationship can be further explored by observing member and casual trips across each month. There was an overall increase in trips during the warmer months, but with some variation between rider types. Member trips began increasing in March, peaked in August, and decreased by December. Casual trip activity was slightly more confined: increasing in April, peaked in July - one month before peak member trips - and subsided after October. 
+2. This relationship can be further explored by observing monthly trip counts. There was an overall increase in trips during the warmer months, but with some variation between rider type. Member trips began increasing in March, peaked in August, and decreased by December. Casual trip activity was slightly narrower: increased in April, peaked in July (one month before peak member trips), and subsided by November. 
 
 <kbd>![Monthly Trip Totals](https://github.com/user-attachments/assets/54218976-6c5c-4244-9a62-23117aa1e326)</kbd>
 
 ---
 
-3. Examining average monthly ride lengths for each rider type offers an additional perspective. The surge in casual rider trips around July was reflected in the surge of average ride lengths among casual riders. While member rider lengths had a slight surge, the averages were significantly more consistent throughout the year. Additionally, casual riders averaged longer trip times than members across 2023, although the sample size of casual trips used to calculate these averages was significantly smaller than member trips. 
+3. Examining average monthly ride lengths for each rider type offers an additional perspective. The surge in casual rider trips around July was reflected in the surge of average ride lengths among casual riders. While member rider lengths had a slight surge, the averages were much more consistent throughout the year. Additionally, casual riders averaged longer trip times than members across 2023, although the sample size of casual trips used to calculate these averages was significantly smaller than member trips. 
 
 <kbd>![Average Monthly Ride Length](https://github.com/user-attachments/assets/762d91b8-976a-4217-9bfe-e4c87245a76c)</kbd>
 
@@ -166,22 +168,22 @@ The queried data was then transferred to Tableau for visualization.
 ---
 
 ## Recommendations
-**Our goal for this project is to convert casual riders into Cyclistic members**. Having looked at the Cyclistic trip data from 2023 (read: [Divvy](https://divvybikes.com/system-data) trip data from 2023), we now know:
+**Our goal for this project is to convert casual riders into Cyclistic members**. Having looked at the 'Cyclistic' trip data from 2023 (so actually [Divvy](https://divvybikes.com/system-data) trip data from 2023), we now know:
  * Casual riders only represented 35% of all bike trips.
  * Casual ridership drastically increased in the warmer months of the year: roughly April through October, peaking in July. This timeframe is slightly narrower than member trip activity.
  * On average, casual riders used the bikes for longer durations than members.
  * Casual riders predominantly used the bikes for leisure purposes (trips concentrated in weekends and late afternoon/evening times), a completely different priority from members using the bikes for commuting.
 
-Rephrasing that last statement, the Cyclistic membership program appears to be most popular among commuters. Purchasing an annual pass for repeat commutes resonates with the demands of commuters, while people using the bikes in their free time would only need to purchase the one-time (or day-use) pass. 
+Rephrasing that last statement, the Cyclistic membership program appears to be work best for commuters. Purchasing an annual pass for repeated trips resonates with the demands of commuters, while people using the bikes in their free time would only need to purchase the one-time (or day-use) pass. 
 
 **Here are some suggested actions for reaching out to non-member riders:**
- * Advertising campaign for annual passes targetting casual riders starting in April or May, anticipating the summer surge in casual rider trips.
+ * Advertising campaign for annual passes targetting casual riders starting in April or May and extending for several months into summer, anticipating the surge in casual rider trips.
  * Offer two-day weekend passes, and/or offer a month-use passes - once again anticipating the casual rider summer surge. *However, since this option does not address converting annual subscribers...*
  * Annual passes have reduced fare rates on weekends (or more free ride time before the fare starts), addressing an alternative purpose for subscribing. This could be a modification to the current annual pass, or be added as a seperate option for annual subscription.
 
 **Additionally, paths for further analysis could include:**
- * Research the conversion rate of casual riders to members. Is there a specific time of year that sees increased subscriptions? 
- * Examine any differences in membership activity, accounting for repeat trips by the same individuals. Do all members use Cyclistic for commuting, or are there repeat users weighing the data? 
+ * Research the conversion rate of casual riders to members. Are casual riders subscribing to the annual pass at a certain time of year? 
+ * Examine any differences in membership activity, accounting for repeat trips by the same individuals. Could repeat riders be weighing the member data? How many members use the bikes for leisure in the way that casual riders do?  
    
 
 
