@@ -1,11 +1,13 @@
-# Divvy-Bikeshare-Analysis
+# Divvy Bikeshare Analysis
 Increasing membership subscriptions using trip data from 2023
 
 ## Introduction
-This analysis will examine a scenario posed by a fictional bikeshare company operating out of Chicago. The company, Cyclistic, allows customers to use one of 5,824 bicycles to travel between one of 692 stations scattered around Chicago. There are three pricing options: single-use passes, daily-use passes, and annual memberships. Given that annual memberships comprise the majority of Cyclistic's profits, this analysis will explore the differences between single-use and daily-use riders (refered to as casual riders) versus riders with annual memberships (referred to as members) - and determine how to convert casual riders to members. 
+This project will explore a scenario involving a fictional bikeshare company operating out of Chicago. The company, Cyclistic, allows customers to use one of 5,824 bicycles to travel between one of 692 stations scattered around Chicago. There are three pricing options: single-use passes, daily-use passes, and annual memberships. Given that annual memberships comprise the majority of Cyclistic's profits, this analysis will explore the differences between single-use and daily-use riders (casual riders) versus riders with annual memberships (member riders) - and determine how to convert casual riders to members.
 
 ### Data Source
-Although the outlined scenario is fictional, this analysis uses 2023 trip data from [Divvy](https://divvybikes.com/system-data).
+This project uses 2023 trip data from [Divvy](https://divvybikes.com/system-data).
+
+This scenario is one of the capstone projects from the Google Data Analytics Certificate on Coursera.
 
 ### The Business Task
   * How do casual riders use Cyclistic bikes differently from members? 
