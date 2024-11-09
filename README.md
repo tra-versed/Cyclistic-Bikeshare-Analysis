@@ -14,12 +14,23 @@ This scenario is one of the capstone projects from the Google Data Analytics Cer
   * What actions can be taken to encourage casual riders to subscribe to an annual membership?
 
 ### Tools Used
-  * Excel - data cleaning and organization
-  * BigQuery - SQL querying and data aggregation
+  * Excel - data cleaning
+  * BigQuery - SQL querying
   * Tableau - data visualization
 
+```
+## Table of Contents
+* [Data Cleaning (Excel)](#data-cleaning-excel)
+  * [Overview](#overview)
+  * [Data Cleaning](#data-cleaning)
+* [Data Analysis (BigQuery)](#data-analysis-bigquery)
+  * [Combining the Data](#combining-the-data)
+  * [Additional SQL Queries](#additional-sql-queries)
+* [Conclusions](#conclusions)
+* [Recommendations](#recommendations)
+```
 
-## Data Organization and Cleaning (Excel)
+## Data Cleaning (Excel)
 ### Overview
 The 2023 trip data was split into twelve tables, one for each month. There were 5,719,877 total trips for 2023, so each table was cleaned individually in Excel. Each table contained the following 13 columns:
   * **ride_id** - alphanumeric ID unique to each trip
@@ -101,7 +112,7 @@ To ensure that all tables were combined accurately, the trips were counted and c
  With the query returning 4,331,883 trips, the data was validated and ready for analysis.
    
 
-### Querying the Data
+### Additional SQL Queries
 1. First, to examine trips per month, the following query counted all trips and grouped by rider type and month:
    
    ```sql
