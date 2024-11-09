@@ -197,16 +197,16 @@ With all metrics queried, the resulting tables were saved and transferred to Tab
  * On average, casual riders used the bikes for longer durations than members.
  * Casual riders predominantly used the bikes for leisure purposes (trips concentrated in weekends and late afternoon/evening times), a completely different priority from members using the bikes for commuting.
 
-Rephrasing that last statement, the Cyclistic membership program appears to be work best for commuters. Purchasing an annual pass for repeated trips resonates with the demands of commuters, while people using the bikes in their free time would only need to purchase the one-time (or day-use) pass. 
+In other words, the Cyclistic membership program appears to work best for commuters. Purchasing an annual pass for repeated trips resonates with the demands of commuters, while people using the bikes in their free time would only need to purchase the one-time or day-use pass. 
 
-**Here are some suggested actions for reaching out to non-member riders:**
- * Advertising campaign for annual passes targetting casual riders starting in April or May and extending for several months into summer, anticipating the surge in casual rider trips.
- * Offer two-day weekend passes, and/or offer a month-use passes - once again anticipating the casual rider summer surge. *However, since this option does not address converting annual subscribers...*
+**Suggested actions for reaching out to non-member riders:**
+ * Offer two-day weekend passes, and/or offer month-use passes - catering to riders free during weekends and vacation time. *However, since this option does not address converting annual subscribers...*
  * Annual passes have reduced fare rates on weekends (or more free ride time before the fare starts), addressing an alternative purpose for subscribing. This could be a modification to the current annual pass, or be added as a seperate option for annual subscription.
+ * Advertising campaign for annual passes targeting casual riders, starting in April or May and extending for several months into summer - anticipating the surge of casual riders. Could be as simple as promotional signs at stations, or a small blurb printed on the bike encouraging subscribing.
 
 **Additionally, paths for further analysis could include:**
  * Research the conversion rate of casual riders to members. Are casual riders subscribing to the annual pass at a certain time of year? 
- * Examine any differences in membership activity, accounting for repeat trips by the same individuals. Could repeat riders be weighing the member data? How many members use the bikes for leisure in the way that casual riders do?  
+ * Examine any differences in membership activity, accounting for repeat trips by the same individuals. Could repeat riders be weighing the member data? How many members use the bikes in the same manner as casual riders?  
    
 
 
