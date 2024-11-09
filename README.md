@@ -132,6 +132,7 @@ To ensure that all tables were combined accurately, the trips were counted and c
      ROUND(AVG(ride_length), 2) AS mean_ride_length
    FROM `bikes_2023.year`
    GROUP BY month, member_casual
+   ORDER BY month, member_casual
    ```
 3. To examine trips by day of week, this query counted every trip occurence in each day, grouped by day of week and rider type:
 
