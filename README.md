@@ -18,7 +18,6 @@ This scenario is one of the capstone projects from the Google Data Analytics Cer
   * BigQuery - SQL querying
   * Tableau - data visualization
 
-```
 ## Table of Contents
 * [Data Cleaning (Excel)](#data-cleaning-excel)
   * [Overview](#overview)
@@ -28,7 +27,6 @@ This scenario is one of the capstone projects from the Google Data Analytics Cer
   * [Additional SQL Queries](#additional-sql-queries)
 * [Conclusions](#conclusions)
 * [Recommendations](#recommendations)
-```
 
 ## Data Cleaning (Excel)
 ### Overview
